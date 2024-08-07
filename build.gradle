@@ -19,6 +19,13 @@ dependencies {
 	implementation 'org.springframework.integration:spring-integration-core:6.3.2'
 }
 
+task run(type: JavaExec) {
+	group = "Execution"
+	description = "Run the main class with JavaExecTask"
+	classpath = sourceSets.main.runtimeClasspath
+	main = "com.example.demo.DemoApplication"
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

@@ -8,10 +8,11 @@ import org.springframework.integration.support.MutableMessageHeaders;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		// If you remove the second header value, this code will work as expected
 		MutableMessageHeaders headers =
-				new MutableMessageHeaders(Map.of("myHeader", "myValue", "header2", new DemoApplication()));
+				new MutableMessageHeaders(Map.of("header1", "value1", "header2", new DemoApplication()));
 
-		headers.put("newHeader", "thisworks");
+		headers.put("header3", "value3"); // This Works
 
 		SerializingConverter serializingConverter = new SerializingConverter();
 		byte[] serialized = serializingConverter.convert(headers);
@@ -20,7 +21,7 @@ public class DemoApplication {
 		MutableMessageHeaders deserializedHeaders =
 				(MutableMessageHeaders) deserializingConverter.convert(serialized);
 
-		deserializedHeaders.put("newHeader", "thisDoesNotWork");
+		deserializedHeaders.put("header4", "value4"); // This does not work (but should)
 	}
 
 }
