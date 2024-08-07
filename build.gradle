@@ -1,0 +1,24 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.integration:spring-integration-core:6.3.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
